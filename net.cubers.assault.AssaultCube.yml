@@ -1,12 +1,12 @@
-app-id: net.cubers.assault.AssaultCube
+id: net.cubers.assault.AssaultCube
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm22
 build-options:
-  append-path: /usr/lib/sdk/llvm20/bin
-  prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+  append-path: /usr/lib/sdk/llvm22/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
 command: assaultcube
 finish-args:
   - --socket=wayland
@@ -42,7 +42,7 @@ modules:
       - type: file
         path: net.cubers.assault.AssaultCube.desktop
       - type: file
-        path: net.cubers.assault.AssaultCube.appdata.xml
+        path: net.cubers.assault.AssaultCube.metainfo.xml
     build-commands:
       - make -j${FLATPAK_BUILDER_N_JOBS}
       - make install
@@ -51,7 +51,7 @@ modules:
       - cp -R -t ${FLATPAK_DEST}/share/assaultcube/ ../../config ../../mods ../../packages ../../bot
       - install -Dm644 ../../net.cubers.assault.AssaultCube.png -t ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/
       - install -Dm644 ../../net.cubers.assault.AssaultCube.desktop -t ${FLATPAK_DEST}/share/applications/
-      - install -Dm644 ../../net.cubers.assault.AssaultCube.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/
+      - install -Dm644 ../../net.cubers.assault.AssaultCube.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo/
       - install -Dm755 ac_client ${FLATPAK_DEST}/share/assaultcube/bin_unix/native_client
       - install -Dm755 ac_server ${FLATPAK_DEST}/share/assaultcube/bin_unix/native_server
       - install -Dm755 ../../assaultcube.sh ${FLATPAK_DEST}/bin/assaultcube
