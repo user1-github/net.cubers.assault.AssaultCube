@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -r
 # Use pkg-config to configure dependencies later
 find_package(PkgConfig REQUIRED)
 # the dependencies required by all platforms
-set(client_deps zlib sdl2 SDL2_image openal vorbisfile gl)
+set(client_deps zlib sdl2 SDL2_image openal vorbisfile gl libenet)
 
 # the client depends on almost all the source files
 set(client_sources
@@ -91,17 +91,11 @@ foreach(dep IN LISTS client_deps)
     endforeach(lib_dir)
 endforeach(dep)
 
-# configure local enet target manually from source files
-file(GLOB enet_sources "enet/*.c")
-add_library(enet STATIC ${enet_sources})
-
 # configure local includes
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/enet/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/bot
 )
 
-# add the client executable and link it to enet
+# add the client executable
 add_executable(ac${BIN_SUFFIX} ${client_sources})
-target_link_libraries(ac${BIN_SUFFIX} enet)
