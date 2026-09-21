@@ -17,7 +17,7 @@ modules:
   - name: assaultcube
     buildsystem: cmake-ninja
     no-make-install: true
-    subdir: source/src
+    subdir: source
     sources:
       - type: git
         url: https://github.com/assaultcube/AC.git
@@ -33,12 +33,12 @@ modules:
         path: net.cubers.assault.AssaultCube.desktop
       - type: shell
         commands:
-          - cp CMakeLists.txt -t source/src
+          - cp CMakeLists.txt -t source
           - sed -i 's|//#define PRODUCTION|#define PRODUCTION|' 'source/src/cube.h'
     post-install:
       - mkdir -p /app/share/assaultcube
-      - cp -a ../../bot ../../config ../../mods ../../packages /app/share/assaultcube
+      - cp -a ../bot ../config ../mods ../packages /app/share/assaultcube
       - install -Dm755 ac_linux -t /app/bin
-      - install -Dm755 ../../assault_cube.sh /app/bin/assaultcube
-      - install -Dm644 ../../net.cubers.assault.AssaultCube.png -t /app/share/icons/hicolor/256x256/apps
-      - install -Dm644 ../../net.cubers.assault.AssaultCube.desktop -t /app/share/applications
+      - install -Dm755 ../assault_cube.sh /app/bin/assaultcube
+      - install -Dm644 ../net.cubers.assault.AssaultCube.png -t /app/share/icons/hicolor/256x256/apps
+      - install -Dm644 ../net.cubers.assault.AssaultCube.desktop -t /app/share/applications
