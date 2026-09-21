@@ -35,6 +35,8 @@ modules:
         tag: v1.3.0.2
         commit: 1ece5af7533983bb8f827616381d282470793d90
       - type: file
+        path: assault_cube.sh
+      - type: file
         path: CMakeLists.txt
       - type: file
         path: net.cubers.assault.AssaultCube.png
@@ -43,11 +45,11 @@ modules:
       - type: shell
         commands:
           - cp CMakeLists.txt -t source/src
-          - sed -i 's#CUBE_DIR=$(dirname "$(readlink -f "${0}")")#CUBE_DIR=/app/share/assaultcube/#g' assaultcube.sh
           - sed -i 's|//#define PRODUCTION|#define PRODUCTION|' 'source/src/cube.h'
     post-install:
-      - install -Dm755 ../../assaultcube.sh /app/bin/assaultcube
-      - install -Dm755 ac_linux /app/share/assaultcube/bin_unix/native_client
+      - mkdir -p /app/share/assaultcube
       - cp -a ../../bot ../../config ../../mods ../../packages /app/share/assaultcube
+      - install -Dm755 ac_linux -t /app/bin
+      - install -Dm755 ../../assault_cube.sh /app/bin/assaultcube
       - install -Dm644 ../../net.cubers.assault.AssaultCube.png -t /app/share/icons/hicolor/256x256/apps
       - install -Dm644 ../../net.cubers.assault.AssaultCube.desktop -t /app/share/applications
