@@ -97,7 +97,7 @@ add_library(enet STATIC ${enet_sources})
 
 # configure local includes
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/enet/include/enet
+    ${CMAKE_CURRENT_SOURCE_DIR}/enet/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/bot
 )
