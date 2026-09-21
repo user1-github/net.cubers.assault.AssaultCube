@@ -11,6 +11,10 @@ finish-args:
   - --socket=fallback-x11
   - --socket=pulseaudio
   - --persist=.assaultcube
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - '*.la'
 modules:
   - shared-modules/SDL2/SDL2_image.json
 
@@ -35,6 +39,8 @@ modules:
         commands:
           - cp CMakeLists.txt -t source
           - sed -i 's|//#define PRODUCTION|#define PRODUCTION|' 'source/src/cube.h'
+          - cd source/enet
+          - ./configure --disable-static && make && make install
     post-install:
       - mkdir -p /app/share/assaultcube
       - cp -a ../bot ../config ../mods ../packages /app/share/assaultcube
