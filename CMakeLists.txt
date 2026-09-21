@@ -91,13 +91,13 @@ foreach(dep IN LISTS client_deps)
     endforeach(lib_dir)
 endforeach(dep)
 
-# configure enet
-set(ENET_SOURCE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/enet)
-add_subdirectory(${ENET_SOURCE_DIRECTORY})
+# configure local enet target manually from source files
+file(GLOB enet_sources "enet/*.c")
+add_library(enet STATIC ${enet_sources})
 
 # configure local includes
 include_directories(
-    ${ENET_SOURCE_DIRECTORY}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/enet
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/bot
 )
