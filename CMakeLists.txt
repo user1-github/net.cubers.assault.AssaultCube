@@ -10,59 +10,59 @@ set(client_deps zlib sdl2 SDL2_image openal vorbisfile gl)
 
 # the client depends on almost all the source files
 set(client_sources
-    crypto.cpp
-    audiomanager.cpp
-    autodownload.cpp
-    client.cpp
-    clientgame.cpp
-    clients2c.cpp
-    command.cpp
-    console.cpp
-    docs.cpp
-    editing.cpp
-    entities.cpp
-    http.cpp
-    log.cpp
-    main.cpp
-    menus.cpp
-    oggstream.cpp
-    openal.cpp
-    packetqueue.cpp
-    physics.cpp
-    protocol.cpp
-    rendercubes.cpp
-    rendergl.cpp
-    renderhud.cpp
-    rendermodel.cpp
-    renderparticles.cpp
-    rendertext.cpp
-    rndmap.cpp
-    scoreboard.cpp
-    serverms.cpp
-    server.cpp
-    serverbrowser.cpp
-    shadow.cpp
-    soundlocation.cpp
-    soundscheduler.cpp
-    stream.cpp
-    texture.cpp
-    tools.cpp
-    water.cpp
-    weapon.cpp
-    wizard.cpp
-    world.cpp
-    worldio.cpp
-    worldlight.cpp
-    worldocull.cpp
-    worldrender.cpp
-    zip.cpp
-    bot/bot.cpp
-    bot/botmanager.cpp
-    bot/bot_ai.cpp
-    bot/bot_util.cpp
-    bot/bot_waypoint.cpp
-    bot/ac_bot.cpp
-    bot/ac_bot_ai.cpp
+    src/crypto.cpp
+    src/audiomanager.cpp
+    src/autodownload.cpp
+    src/client.cpp
+    src/clientgame.cpp
+    src/clients2c.cpp
+    src/command.cpp
+    src/console.cpp
+    src/docs.cpp
+    src/editing.cpp
+    src/entities.cpp
+    src/http.cpp
+    src/log.cpp
+    src/main.cpp
+    src/menus.cpp
+    src/oggstream.cpp
+    src/openal.cpp
+    src/packetqueue.cpp
+    src/physics.cpp
+    src/protocol.cpp
+    src/rendercubes.cpp
+    src/rendergl.cpp
+    src/renderhud.cpp
+    src/rendermodel.cpp
+    src/renderparticles.cpp
+    src/rendertext.cpp
+    src/rndmap.cpp
+    src/scoreboard.cpp
+    src/serverms.cpp
+    src/server.cpp
+    src/serverbrowser.cpp
+    src/shadow.cpp
+    src/soundlocation.cpp
+    src/soundscheduler.cpp
+    src/stream.cpp
+    src/texture.cpp
+    src/tools.cpp
+    src/water.cpp
+    src/weapon.cpp
+    src/wizard.cpp
+    src/world.cpp
+    src/worldio.cpp
+    src/worldlight.cpp
+    src/worldocull.cpp
+    src/worldrender.cpp
+    src/zip.cpp
+    src/bot/bot.cpp
+    src/bot/botmanager.cpp
+    src/bot/bot_ai.cpp
+    src/bot/bot_util.cpp
+    src/bot/bot_waypoint.cpp
+    src/bot/ac_bot.cpp
+    src/bot/ac_bot_ai.cpp
 )
 
 # platform specific code
@@ -92,14 +92,14 @@ foreach(dep IN LISTS client_deps)
 endforeach(dep)
 
 # configure enet
-set(ENET_SOURCE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../enet)
+set(ENET_SOURCE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/enet)
 add_subdirectory(${ENET_SOURCE_DIRECTORY})
 
 # configure local includes
 include_directories(
     ${ENET_SOURCE_DIRECTORY}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/bot
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/bot
 )
 
 # add the client executable and link it to enet
