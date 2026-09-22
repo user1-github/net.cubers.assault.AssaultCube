@@ -7,6 +7,9 @@ sdk-extensions:
 build-options:
   append-path: /usr/lib/sdk/llvm22/bin
   prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
+  env:
+    CC: clang
+    CXX: clang++
 command: assaultcube
 finish-args:
   - --device=dri
