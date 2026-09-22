@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
+# Use Clang compiler
+set(CMAKE_CXX_COMPILER "clang++")
+
 # set compile options
-set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -rdynamic -Wno-format-zero-length -Wno-stringop-truncation")
+set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -Wall -fsigned-char")
 
 # Use pkg-config to configure dependencies later
 find_package(PkgConfig REQUIRED)
