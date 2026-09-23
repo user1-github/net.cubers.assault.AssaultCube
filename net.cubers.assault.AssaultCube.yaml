@@ -2,14 +2,6 @@ id: net.cubers.assault.AssaultCube
 runtime: org.freedesktop.Platform
 runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm22
-build-options:
-  append-path: /usr/lib/sdk/llvm22/bin
-  prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
-  env:
-    CC: clang
-    CXX: clang++
 command: assaultcube
 finish-args:
   - --device=dri
@@ -19,6 +11,8 @@ finish-args:
   - --socket=fallback-x11
   - --socket=pulseaudio
   - --persist=.assaultcube
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.llvm22
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -29,6 +23,11 @@ modules:
 
   - name: assaultcube
     buildsystem: cmake-ninja
+    build-options:
+      append-path: /usr/lib/sdk/llvm22/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
+      env:
+        CXX: clang++
     no-make-install: true
     subdir: source
     sources:
